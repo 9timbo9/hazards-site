@@ -125,3 +125,9 @@ html, body, #root {
   right: 0;
 }
 
+.reset-map{
+  cursor: pointer;
+  color: var(--text);
+  padding: 6px;
+  transition: right 0.3s ease; /* matches sidebar transition */
+}

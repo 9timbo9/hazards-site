@@ -15,6 +15,7 @@ function App() {
       <div className='app-body'>
         <div className='map-container'>
           <MapView />
+          
         </div>
         <button
           className={`toggle-btn ${isOpen ? '' : 'closed'}`}
