@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import useStore from '../../store/useStore'
 
 export default function MapView() {
   const mapContainer = useRef(null)
@@ -22,6 +23,8 @@ export default function MapView() {
       if (markerRef.current) {
         markerRef.current.remove()
       }
+      useStore.getState().openPanel()       // just opens the sidebar
+
       const { lng, lat } = e.lngLat
       console.log('Clicked at:', lng, lat)
 
@@ -31,9 +34,47 @@ export default function MapView() {
       markerRef.current.on('dragend', () => {
         const { lng, lat } = markerRef.current.getLngLat()
         console.log('Marker dragged to:', lng, lat)
+        map.current.flyTo({
+          center: [lng, lat],
+          zoom: 8,
+          essential: true
+        })
       })
+      map.current.flyTo({
+        center: [lng, lat],
+        zoom: 8,
+        essential: true
+      })
+
     })
+    map.current.on('load', () => {
+      const center = map.current.getCenter()
+      const zoom = map.current.getZoom()
+      const bounds = map.current.getBounds()
+
+      useStore.getState().setMapView(
+        [center.lng, center.lat],
+        zoom,
+        bounds.toArray()
+      )
+    })
+
+    map.current.on('moveend', () => {
+      const center = map.current.getCenter()
+      const zoom = map.current.getZoom()
+      const bounds = map.current.getBounds()
+
+      console.log('Map settled at:', center, 'zoom:', zoom, 'bounds:', bounds)
+
+      useStore.getState().setMapView(
+        [center.lng, center.lat],
+        zoom,
+        bounds.toArray())
+
+    })
+
   }, [])
 
   return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
 }
+

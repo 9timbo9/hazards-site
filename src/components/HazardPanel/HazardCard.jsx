@@ -1,0 +1,1 @@
+//individual hazard card component for hazard panel

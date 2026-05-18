@@ -1,8 +1,7 @@
 import { create } from 'zustand'
-
-const useStore = create((set) => ({
-  markerPosition: null,
-  setMarkerPosition: (position) => set({ markerPosition: position }),
+import createMapSlice from './mapSlice'
+const useStore = create((set, get) => ({
+  ...createMapSlice(set, get),
 }))
 
 export default useStore
