@@ -1,0 +1,37 @@
+.hazard-panel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 10px;
+}
+
+.hazard-panel-container h2 {
+    margin-bottom: 0.25rem;
+}
+
+.lat-long {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.lat-long .entry {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 200px;
+    /* Adjust this to control the width of the gap */
+}
+
+.lat-long .label {
+    font-weight: bold;
+}
+
+.lat-long .value {
+    font-family: monospace;
+}
+
+.tiny-text {
+    font-size: 10px;
+    color: var(--text-muted);
+}

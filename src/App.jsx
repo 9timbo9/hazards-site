@@ -1,8 +1,9 @@
 // import { useState } from 'react';
 import { PanelRightOpen, PanelRightClose, TriangleAlert } from 'lucide-react'
 import MapView from './components/Map/MapView'
-import './App.css'
+import './styles/App.css'
 import useStore from './store/useStore'
+import HazardPanel from './components/HazardPanel/HazardPanel';
 
 function App() {
   // const [isOpen, setIsOpen] = useState(false) // set it true and keep it true when you set a spot on the map
@@ -29,7 +30,9 @@ function App() {
 
         </button>
         <div className={isOpen ? "sidebar" : "sidebar closed"}>
-          <div className='hazard-panel'></div>
+          <div className='hazard-panel'>
+            <HazardPanel />
+          </div>
         </div>
 
       </div>
