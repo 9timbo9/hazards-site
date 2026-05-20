@@ -10,7 +10,6 @@ function App() {
   const openPanel = useStore((s) => s.openPanel)
   const closePanel = useStore((s) => s.closePanel)
 
-
   return (
     <div className="app">
       <header className="app-header">

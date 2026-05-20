@@ -12,8 +12,9 @@ const createMapSlice = (set, get) => ({
     closePanel: () => set((state) => ({
         mapView: { ...state.mapView, isOpen: false }
     })),
-    setMapView: (center, zoom, bounds) => set(() => ({
+    setMapView: (center, zoom, bounds) => set((state) => ({
         mapView: {
+            ...state.mapView,
             center,
             zoom,
             bounds,
