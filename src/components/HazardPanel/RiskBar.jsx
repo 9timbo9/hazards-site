@@ -1,3 +1,11 @@
-//individual risk bar component for hazard panel
-// import React from 'react';
-// import './RiskBar.css';
+// //overall risk index
+
+// export default function RiskBar({ riskLevel }) {
+//     return (
+//         <div className="risk-bar">
+//             <div className={`risk-level ${riskLevel.toLowerCase()}`}>
+//                 {riskLevel}
+//             </div>
+//         </div>
+//     )
+// }

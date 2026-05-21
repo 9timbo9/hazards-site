@@ -1,6 +1,7 @@
 import useStore from '../../store/useStore'
 import '../../styles/HazardPanel.css'
 import {TriangleAlert } from 'lucide-react'
+// import RiskBar from './RiskBar.jsx'
 
 
 export default function HazardPanel() {
