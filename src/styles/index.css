@@ -118,7 +118,12 @@ html, body, #root {
   cursor: pointer;
   color: var(--text);
   padding: 6px;
-  transition: right 0.3s ease; /* matches sidebar transition */
+  transition: right 0.3s ease, color 0.2s ease, transform 0.2s ease; /* add color and transform */
+}
+
+.toggle-btn:hover {
+  color: var(--accent);
+  transform: scale(1.1);
 }
 
 .toggle-btn.closed {

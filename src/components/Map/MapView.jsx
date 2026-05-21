@@ -26,6 +26,8 @@ export default function MapView() {
       useStore.getState().openPanel()       // just opens the sidebar
 
       const { lng, lat } = e.lngLat
+
+      useStore.getState().setCenter(lng, lat)  //storing state
       console.log('Clicked at:', lng, lat)
 
       markerRef.current = new maplibregl.Marker({ color: 'red', draggable: true })
@@ -33,6 +35,7 @@ export default function MapView() {
         .addTo(map.current)
       markerRef.current.on('dragend', () => {
         const { lng, lat } = markerRef.current.getLngLat()
+        useStore.getState().setCenter(lng, lat) //storing state
         console.log('Marker dragged to:', lng, lat)
         map.current.flyTo({
           center: [lng, lat],
@@ -48,12 +51,10 @@ export default function MapView() {
 
     })
     map.current.on('load', () => {
-      const center = map.current.getCenter()
       const zoom = map.current.getZoom()
       const bounds = map.current.getBounds()
 
       useStore.getState().setMapView(
-        [center.lng, center.lat],
         zoom,
         bounds.toArray()
       )
@@ -67,7 +68,6 @@ export default function MapView() {
       console.log('Map settled at:', center, 'zoom:', zoom, 'bounds:', bounds)
 
       useStore.getState().setMapView(
-        [center.lng, center.lat],
         zoom,
         bounds.toArray())
 
