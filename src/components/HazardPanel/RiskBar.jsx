@@ -1,11 +1,10 @@
-// //overall risk index
+//overall risk index
+import '../../styles/HazardPanel.css';
 
-// export default function RiskBar({ riskLevel }) {
-//     return (
-//         <div className="risk-bar">
-//             <div className={`risk-level ${riskLevel.toLowerCase()}`}>
-//                 {riskLevel}
-//             </div>
-//         </div>
-//     )
-// }
+export default function RiskBar({ riskLevel }) {
+    return (
+        <div className="risk-bar" style={{ '--final-p': riskLevel }}>
+                {riskLevel}
+        </div> 
+    )
+}

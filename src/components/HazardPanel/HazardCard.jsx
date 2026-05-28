@@ -1,10 +1,30 @@
 //individual hazard card component for hazard panel
+import '../../styles/HazardPanel.css'
+import RiskBar from './RiskBar.jsx'
+import { useEffect, useState } from 'react'
 
-export const HazardCard = ({ hazardType, description }) => {
+export default function HazardCard({ hazardName, riskLevel, delay }) {
+
+    const [isVisible, setIsVisible] = useState(false)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(true)
+        }, delay)
+        return () => clearTimeout(timer);
+
+    }, [delay]);
+
+
     return (
-        <div className="hazard-card">
-            <h3>{hazardType}</h3>
-            <p>{description}</p>
-        </div>
+        isVisible ?
+            <div className="hazard-card">
+                <div className="hazard-card-left">
+                    <h3>{hazardName}</h3>
+                    <p className="tiny-text">Details about {hazardName}: {riskLevel}</p>
+                </div>
+                <RiskBar riskLevel={riskLevel} />
+            </div>
+            : null
     )
 }

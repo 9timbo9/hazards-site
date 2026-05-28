@@ -1,10 +1,11 @@
 const createMapSlice = (set, get) => ({
     mapView: {
         isOpen: false,
-        center: [-98.35, 39.5], //set to u.s
+        center: null,
         zoom: 4,
         bounds: null,
         minZoomForFetch: 7,
+        // selectedLocation: null,
     },
     openPanel: () => set((state) => ({
         mapView: { ...state.mapView, isOpen: true }
@@ -16,6 +17,7 @@ const createMapSlice = (set, get) => ({
         mapView: {
             ...state.mapView,
             center: [lng, lat],
+            // selectedLocation: [lng, lat]
         }
     })),
     setMapView: ( zoom, bounds) => set((state) => ({
@@ -23,6 +25,7 @@ const createMapSlice = (set, get) => ({
             ...state.mapView,
             zoom,
             bounds,
+            // selectedLocation: state.mapView.selectedLocation
         }
     })),
     getMapView: () => get().mapView,

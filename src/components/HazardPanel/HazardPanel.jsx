@@ -1,14 +1,21 @@
 import useStore from '../../store/useStore'
 import '../../styles/HazardPanel.css'
-import {TriangleAlert } from 'lucide-react'
+import { TriangleAlert } from 'lucide-react'
+import HazardCard from './HazardCard.jsx'
 // import RiskBar from './RiskBar.jsx'
 
 
 export default function HazardPanel() {
     const { center } = useStore((s) => s.mapView)
-    const [lng, lat] = center
+    // const isOpen = useStore((s) => s.mapView.isOpen)
+    const [lng, lat] = center ? center : [0, 0]
     const latDir = lat >= 0 ? 'N' : 'S'
     const lngDir = lng >= 0 ? 'E' : 'W'
+    const hazards = [
+        { type: 'earthquake', riskLevel: '4.2' },
+        { type: 'flood', riskLevel: '30' },
+        { type: 'volcano', riskLevel: '60' },
+    ]
 
 
 
@@ -33,8 +40,16 @@ export default function HazardPanel() {
             <hr></hr>
             <div className='hazard-cards'>
                 <h2>Hazard Information</h2>
+                {center ? hazards.map((hazard, index) => (
+                    <HazardCard 
+                        key={index}
+                        hazardName={hazard.type}
+                        riskLevel={hazard.riskLevel}
+                        delay={index*200} />
+                )) : null}
+                {/* style={{ animationDelay: `${index * 100}ms` }}  for map*/}
 
-                <TriangleAlert size={16} className="hazard-loader" />
+                {center ? <TriangleAlert size={16} className="hazard-loader" /> : null}
             </div>
         </div>
 
