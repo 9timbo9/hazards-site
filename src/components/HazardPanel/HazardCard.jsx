@@ -3,7 +3,8 @@ import '../../styles/HazardPanel.css'
 import RiskBar from './RiskBar.jsx'
 import { useEffect, useState } from 'react'
 
-export default function HazardCard({ hazardName, riskLevel, delay }) {
+
+export default function HazardCard({ hazardName, riskLevel, details, delay }) {
 
     const [isVisible, setIsVisible] = useState(false)
 
@@ -21,7 +22,7 @@ export default function HazardCard({ hazardName, riskLevel, delay }) {
             <div className="hazard-card">
                 <div className="hazard-card-left">
                     <h3>{hazardName}</h3>
-                    <p className="tiny-text">Details about {hazardName}: {riskLevel}</p>
+                    <p className="tiny-text">{details}</p>
                 </div>
                 <RiskBar riskLevel={riskLevel} />
             </div>

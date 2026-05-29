@@ -3,6 +3,7 @@ import '../../styles/HazardPanel.css'
 import { TriangleAlert } from 'lucide-react'
 import HazardCard from './HazardCard.jsx'
 // import RiskBar from './RiskBar.jsx'
+import {useSeismicRisk} from '../../services/usgs.js'
 
 
 export default function HazardPanel() {
@@ -11,8 +12,11 @@ export default function HazardPanel() {
     const [lng, lat] = center ? center : [0, 0]
     const latDir = lat >= 0 ? 'N' : 'S'
     const lngDir = lng >= 0 ? 'E' : 'W'
+
+    const { score, loading } = useSeismicRisk(lat, lng)
+
     const hazards = [
-        { type: 'earthquake', riskLevel: '4.2' },
+        { type: 'earthquake', riskLevel: score ?? (loading ? 'Loading...' : 'N/A') },
         { type: 'flood', riskLevel: '30' },
         { type: 'volcano', riskLevel: '60' },
     ]
@@ -45,9 +49,10 @@ export default function HazardPanel() {
                         key={index}
                         hazardName={hazard.type}
                         riskLevel={hazard.riskLevel}
+                        details={`Details for ${hazard.type} hazard.`}
                         delay={index*200} />
                 )) : null}
-                {/* style={{ animationDelay: `${index * 100}ms` }}  for map*/}
+
 
                 {center ? <TriangleAlert size={16} className="hazard-loader" /> : null}
             </div>
