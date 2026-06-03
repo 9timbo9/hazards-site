@@ -13,6 +13,7 @@ export function useSeismicRisk(lat, long) {
 
         async function fetchSeismicRisk() {
             try {
+                setScore(null);  // Reset score when lat/long changes so that loading state can be shown
                 setLoading(true);
                 const response = await fetch(
                     `https://earthquake.usgs.gov/nshmp-haz-ws/hazard/E2014/COUS/${long}/${lat}/PGA/760`,

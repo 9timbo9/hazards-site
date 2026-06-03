@@ -13,10 +13,10 @@ export default function HazardPanel() {
     const latDir = lat >= 0 ? 'N' : 'S'
     const lngDir = lng >= 0 ? 'E' : 'W'
 
-    const { score, loading } = useSeismicRisk(lat, lng)
+    const { score} = useSeismicRisk(lat, lng)
 
     const hazards = [
-        { type: 'earthquake', riskLevel: score ?? (loading ? 'Loading...' : 'N/A') },
+        { type: 'earthquake', riskLevel: score},
         { type: 'flood', riskLevel: '30' },
         { type: 'volcano', riskLevel: '60' },
     ]
@@ -46,7 +46,7 @@ export default function HazardPanel() {
                 <h2>Hazard Information</h2>
                 {center ? hazards.map((hazard, index) => (
                     <HazardCard 
-                        key={index}
+                        key={`${lat}-${lng}-${hazard.type}`}
                         hazardName={hazard.type}
                         riskLevel={hazard.riskLevel}
                         details={`Details for ${hazard.type} hazard.`}
