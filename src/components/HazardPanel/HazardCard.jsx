@@ -25,9 +25,8 @@ export default function HazardCard({ hazardName, riskLevel, details, delay }) {
                     <h3>{hazardName}</h3>
                     <p className="tiny-text">{details}</p>
                 </div>
-
                 {riskLevel == null ? <TriangleAlert size={16} className="hazard-loader" /> : <RiskBar riskLevel={riskLevel} /> }
-            </div>
-            : null
+                </div>
+                : null
     )
 }

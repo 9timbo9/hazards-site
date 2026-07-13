@@ -99,6 +99,8 @@ html, body, #root {
   overflow-y: auto;
   transition: width 0.3s ease;
   z-index: 2;  /* above MapLibre canvas */
+  overflow-x: hidden;        
+
 }
 
 .sidebar.closed {

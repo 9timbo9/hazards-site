@@ -131,17 +131,50 @@
     justify-content: center;
     position: relative;
     animation: slide 1s ease-in-out forwards;
-
 }
 
 /* Inner circle to make it look like a ring */
-.risk-bar::after {
+.risk-bar::before {
     content: "";
     position: absolute;
     width: 40px;
     height: 40px;
     background: var(--bg-surface2);
     border-radius: 50%;
+    z-index: 0;
+}
+
+/* Tooltip on hover */
+/* Tooltip on hover - Positioned top-left */
+.risk-bar::after {
+  content: attr(data-score);
+  position: absolute;
+  
+  /* 1. Anchor to the top-left of the circle */
+  bottom: 100%;
+  right: 100%;
+  
+  /* 2. Remove the previous center alignment */
+  transform: none; 
+  
+  /* 3. Tiny layout adjustments */
+  background: #1a1a1a;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  
+  /* 4. Pushes it slightly up and left away from the cursor/circle */
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.risk-bar:hover::after {
+    opacity: 1;
 }
 
 @keyframes slide {

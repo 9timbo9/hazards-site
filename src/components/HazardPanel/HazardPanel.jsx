@@ -4,6 +4,8 @@ import { TriangleAlert } from 'lucide-react'
 import HazardCard from './HazardCard.jsx'
 // import RiskBar from './RiskBar.jsx'
 import {useSeismicRisk} from '../../services/usgs.js'
+import { useFloodRisk } from '../../services/fema.js'
+
 
 
 export default function HazardPanel() {
@@ -14,10 +16,12 @@ export default function HazardPanel() {
     const lngDir = lng >= 0 ? 'E' : 'W'
 
     const { score} = useSeismicRisk(lat, lng)
+    const { score: floodScore } = useFloodRisk(lat, lng)
+
 
     const hazards = [
         { type: 'earthquake', riskLevel: score},
-        { type: 'flood', riskLevel: '30' },
+        { type: 'flood', riskLevel: floodScore },
         { type: 'volcano', riskLevel: '60' },
     ]
 
